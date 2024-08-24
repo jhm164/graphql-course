@@ -34,7 +34,7 @@ var user = buildSchema(
 
 var resolvers = {
   addUser: (params) => {
-    console.log(params.input)
+    console.log(params.input);
     return params.input;
   },
 };
