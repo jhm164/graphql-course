@@ -18,6 +18,7 @@ enrolledCourses:[ID]
 
 type Query{
 getUser(id:ID):User
+login( username:String!, password:String!):String
 }
 
 type Mutation{

@@ -1,5 +1,7 @@
 import UserMongoSchema from "./userMongoSchema";
-
+// import jwt  from 'jsonwebtoken'
+const jwt = require("jsonwebtoken")
+const JWT_SECRET = "asdasd32432tfsd54555asdas"
 const userResolver = {
   Query: {
     getUser: async (_: any, { id }: any) => {
@@ -19,6 +21,20 @@ const userResolver = {
           throw new Error("User not found");
         }
         return user;
+      } catch (e: any) {
+        console.log(e);
+      }
+    },
+    login: async (_: any, { username,password }: any) => {
+      try {
+        
+        const user = await UserMongoSchema.findOne({username:username,password:password});
+        console.log(":user",user)
+        if (!user) {
+          throw new Error("Login Failed!");
+        }
+     const token =   jwt.sign({id:user._id,role:user.role,email:user.email},JWT_SECRET,{expiresIn:'1h'})
+        return token;
       } catch (e: any) {
         console.log(e);
       }
