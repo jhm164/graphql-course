@@ -11,7 +11,7 @@ type User{
 id: ID!
 username:String!
 email:String!
-password:String!
+password:String! 
 role: Role!
 enrolledCourses:[ID]
 }

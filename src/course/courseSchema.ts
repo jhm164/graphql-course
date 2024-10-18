@@ -5,9 +5,9 @@ type Course{
     title:String!
     instructor:User
     lessons:[Lesson]
-    reviews:[Review]
+    reviews:[Review] @auth(requires:ADMIN)
     category:String
-    rating:Float
+    rating:Float  @auth(requires:STUDENT)
     createdAt:String
     updatedAt:String
 
